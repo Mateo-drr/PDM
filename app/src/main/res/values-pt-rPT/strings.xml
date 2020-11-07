@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PDMG2</string>
+    <string name="navigation_drawer_open">Abrir janela de navegação</string>
+    <string name="navigation_drawer_close">Fechar janela de navegação</string>
+    <string name="nav_header_title">Nome</string>
+    <string name="nav_header_subtitle">mail</string>
+    <string name="nav_header_desc">Cabeçalho de navegação</string>
+    <string name="menu_activity">Atividade</string>
+    <string name="menu_settings">Definições</string>
+    <string name="menu_logout">Sair</string>
+</resources>
