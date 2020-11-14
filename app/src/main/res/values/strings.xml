@@ -22,4 +22,8 @@
     <string name="your_name">Full Name</string>
     <string name="btn_reg_fingerprint">Add Fingerprint</string>
     <string name="btn_log_fingerprint">LogIn with Fingerprint</string>
+    <string name="tst_fillEverything" translatable="false">Enter email and password!</string>
+    <string name="tst_error">Error</string>
+    <string name="tst_diffpass" translatable="false">Passwords don\'t match</string>
+    <string name="tst_usercreated">User Created!</string>
 </resources>

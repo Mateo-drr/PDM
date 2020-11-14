@@ -20,4 +20,6 @@
     <string name="tag">Junta-te a nós!</string>
     <string name="btn_reg_fingerprint">Adicionar Impressão Digital</string>
     <string name="btn_log_fingerprint">Entrar com Impressão Digital</string>
+    <string name="tst_error">Erro</string>
+    <string name="tst_usercreated">Usuario criado!</string>
 </resources>
