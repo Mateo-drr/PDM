@@ -9,6 +9,17 @@
     <string name="menu_activity">Atividade</string>
     <string name="menu_settings">Definições</string>
     <string name="menu_logout">Sair</string>
+    <string name="swipe_left_for_register">Desliza à direia para registar</string>
+    <string name="login">Entrar</string>
+    <string name="password" translatable="false">Palavra Passe</string>
+    <string name="e_mail">Email</string>
+    <string name="swipe_right_for_login">Desliza à direita se já tiver conta</string>
+    <string name="register">Registar</string>
+    <string name="re_type_password">Rescrever Palavra Passe</string>
+    <string name="your_name">Nome Inteiro</string>
+    <string name="tag">Junta-te a nós!</string>
+    <string name="btn_reg_fingerprint">Adicionar Impressão Digital</string>
+    <string name="btn_log_fingerprint">Entrar com Impressão Digital</string>
     <string name="tst_error">Erro</string>
     <string name="tst_usercreated">Usuario criado!</string>
 </resources>
