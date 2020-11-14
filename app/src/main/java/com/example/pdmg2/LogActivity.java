@@ -34,7 +34,7 @@ public class LogActivity extends AppCompatActivity {
     private String userEmail;
     private String userPass;
 
-    private ArrayList<User> arr_users;
+    private ArrayList<User> arr_users = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,24 +45,22 @@ public class LogActivity extends AppCompatActivity {
         pagerAdapter.addFragmet(new RegisterFragment());
         viewPager.setAdapter(pagerAdapter);
 
-        //read login data
-        logemail = findViewById(R.id.txtlogemail);
-        logpass = findViewById(R.id.txtlogpass);
+    }
+
+    public void onClickRegister(View view) {
         //read register data
         regname = findViewById(R.id.txtregname);
         regemail = findViewById(R.id.txtregemail);
         regpass = findViewById(R.id.txtregpass);
         regpass2 = findViewById(R.id.txtregpass2);
 
-    }
-
-    public void onClickRegister(View view) {
         userregname = regname.getText().toString();
         userregemail = regemail.getText().toString();
         userregpass = regpass.getText().toString();
         userregpass2 = regpass2.getText().toString();
 
-        if(userlogemail.isEmpty() || userlogpass.isEmpty() || userlogemail.equals("-") || userlogpass.equals("-")) {
+        if(userregpass.isEmpty() || userregpass2.isEmpty() || userregpass2.equals("-") || userregpass.equals("-")
+            || userregname.isEmpty() || userregname.equals("-") || userregemail.isEmpty() || userregemail.equals("-")) {
             //AlertDialog ad = new AlertDialog.Builder(this).create();
             //ad.setMessage(getString(R.string.tst_fillEverything));
             //ad.setTitle(getString(R.string.tst_error));
@@ -84,6 +82,10 @@ public class LogActivity extends AppCompatActivity {
     }
 
     public void onClickLogin(View view) {
+        //read login data
+        logemail = findViewById(R.id.txtlogemail);
+        logpass = findViewById(R.id.txtlogpass);
+
         userlogemail = logemail.getText().toString();
         userPass = logpass.getText().toString();
 
