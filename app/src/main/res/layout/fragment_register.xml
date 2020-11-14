@@ -30,7 +30,7 @@
         android:textSize="17sp" />
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/txtregname"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -44,7 +44,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/txtemail"
+        android:id="@+id/txtregemail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -58,7 +58,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/txtpassword"
+        android:id="@+id/txtregpass"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -72,7 +72,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/et_repassword"
+        android:id="@+id/txtregpass2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -99,6 +99,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/btn_custom"
             android:fontFamily="sans-serif"
+            android:onClick="onClickRegister"
             android:text="@string/register"
             android:textColor="@android:color/white" />
 

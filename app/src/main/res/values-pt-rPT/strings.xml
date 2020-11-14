@@ -9,4 +9,6 @@
     <string name="menu_activity">Atividade</string>
     <string name="menu_settings">Definições</string>
     <string name="menu_logout">Sair</string>
+    <string name="tst_error">Erro</string>
+    <string name="tst_usercreated">Usuario criado!</string>
 </resources>

@@ -20,7 +20,7 @@
         android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/txtemail"
+        android:layout_above="@id/txtlogemail"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif"
@@ -28,10 +28,10 @@
         android:textSize="17sp" />
 
     <EditText
-        android:id="@+id/txtemail"
+        android:id="@+id/txtlogemail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@id/txtpassword"
+        android:layout_above="@id/txtlogpass"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/et_custom"
@@ -43,7 +43,7 @@
         android:textSize="15sp" />
 
     <EditText
-        android:id="@+id/txtpassword"
+        android:id="@+id/txtlogpass"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
@@ -62,12 +62,13 @@
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtpassword"
+        android:layout_below="@id/txtlogpass"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/btn_custom"
         android:fontFamily="sans-serif"
+        android:onClick="onClickLogin"
         android:text="@string/login"
         android:textColor="@android:color/white" />
 

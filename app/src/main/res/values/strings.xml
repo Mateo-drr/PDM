@@ -20,4 +20,8 @@
     <string name="register" translatable="false">Register</string>
     <string name="re_type_password" translatable="false">Re-type Password</string>
     <string name="your_name" translatable="false">Full Name</string>
+    <string name="tst_fillEverything" translatable="false">Enter email and password!</string>
+    <string name="tst_error">Error</string>
+    <string name="tst_diffpass" translatable="false">Passwords don\'t match</string>
+    <string name="tst_usercreated">User Created!</string>
 </resources>
