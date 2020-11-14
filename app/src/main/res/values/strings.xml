@@ -11,13 +11,15 @@
     <string name="menu_logout">Log Out</string>
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="swipe_left_for_register" translatable="false">Swipe Left for Register</string>
-    <string name="login" translatable="false">Login</string>
-    <string name="password" translatable="false">Password</string>
-    <string name="e_mail" translatable="false">Email</string>
-    <string name="tag" translatable="false">Let\'s join us and \nBuild your relationship with others</string>
-    <string name="swipe_right_for_login" translatable="false">Swipe Right for Login</string>
-    <string name="register" translatable="false">Register</string>
-    <string name="re_type_password" translatable="false">Re-type Password</string>
-    <string name="your_name" translatable="false">Full Name</string>
+    <string name="swipe_left_for_register">Swipe Left for Register</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">Email</string>
+    <string name="tag">Join Us!</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+    <string name="btn_reg_fingerprint">Add Fingerprint</string>
+    <string name="btn_log_fingerprint">LogIn with Fingerprint</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.pdmg2;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -21,6 +22,12 @@ public class LogActivity extends AppCompatActivity {
         pagerAdapter.addFragmet(new LoginFragment());
         pagerAdapter.addFragmet(new RegisterFragment());
         viewPager.setAdapter(pagerAdapter);
+    }
+
+    public void OnClickRegister(View view) {
+    }
+
+    public void onClickLogin(View view) {
     }
 
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
