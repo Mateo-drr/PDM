@@ -11,12 +11,13 @@
         android:theme="@style/Theme.PDMG2">
         <activity
             android:name=".MainActivity"
+            android:theme="@style/Theme.PDMG2.NoActionBar"
             android:parentActivityName=".LogActivity" />
 
         <activity
             android:name=".LogActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.PDMG2.NoActionBar">
+            android:label="@string/app_name">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,3 +27,4 @@
     </application>
 
 </manifest>
+

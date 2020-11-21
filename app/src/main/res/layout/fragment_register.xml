@@ -22,25 +22,25 @@
         android:textSize="17sp" />
 
     <EditText
-        android:id="@+id/et_name"
+        android:id="@+id/txtregname"
         android:hint="@string/your_name"
         android:inputType="textPersonName"
         style ="@style/Theme.PDMG2.LogIn_credentials"/>
 
     <EditText
-        android:id="@+id/txtemail"
+        android:id="@+id/txtregemail"
         android:hint="@string/e_mail"
         android:inputType="textEmailAddress"
         style ="@style/Theme.PDMG2.LogIn_credentials" />
 
     <EditText
-        android:id="@+id/txtpassword"
+        android:id="@+id/txtregpass"
         style="@style/Theme.PDMG2.LogIn_credentials"
         android:hint="@string/password"
         android:inputType="textPassword"/>
 
     <EditText
-        android:id="@+id/et_repassword"
+        android:id="@+id/txtregpass2"
         android:hint="@string/re_type_password"
         android:inputType="textPassword"
         style ="@style/Theme.PDMG2.LogIn_credentials"/>

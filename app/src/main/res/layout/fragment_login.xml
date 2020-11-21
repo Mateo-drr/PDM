@@ -14,21 +14,21 @@
     <TextView
         android:id="@+id/tv_subtitle"
         style ="@style/Theme.PDMG2.LogIn"
-        android:layout_above="@id/txtemail"
+        android:layout_above="@id/txtlogemail"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="50dp"
         android:text="@string/tag"
         android:textSize="17sp" />
 
     <EditText
-        android:id="@+id/txtemail"
+        android:id="@+id/txtlogemail"
         style="@style/Theme.PDMG2.LogIn_credentials"
-        android:layout_above="@id/txtpassword"
+        android:layout_above="@id/txtlogpass"
         android:hint="@string/e_mail"
         android:inputType="textEmailAddress"/>
 
     <EditText
-        android:id="@+id/txtpassword"
+        android:id="@+id/txtlogpass"
         style="@style/Theme.PDMG2.LogIn_credentials"
         android:layout_centerInParent="true"
         android:hint="@string/password"
@@ -37,7 +37,7 @@
     <Button
         android:id="@+id/btn_login"
         style="@style/Theme.PDMG2.LogIn_Button"
-        android:layout_below="@id/txtpassword"
+        android:layout_below="@id/txtlogpass"
         android:layout_marginTop="15dp"
         android:onClick="onClickLogin"
         android:text="@string/login"
