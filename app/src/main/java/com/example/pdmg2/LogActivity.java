@@ -101,16 +101,26 @@ public class LogActivity extends AppCompatActivity {
             //ad.show();
             Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
         }else {
-            //TODO
+            //TODO compare if user is registered
             User ulog = new User(userlogemail, "", userlogpass);
             //ulog.getEmail().compareTo();
-
             //Launch main activity
-            Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
-            Intent i = new Intent (this, MainActivity.class);
-            startActivity(i);
+            Toast.makeText(this, getString(R.string.tst_log_ok), Toast.LENGTH_SHORT).show();
+
+            //Launch main activity and remove login activity
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
         }
 
+    }
+
+    public void onClickLogFing(View view) {
+
+    }
+
+    public void onClickRegFing(View view) {
     }
 
     public String getUserlogemail() {
@@ -128,6 +138,7 @@ public class LogActivity extends AppCompatActivity {
     public void setUserPass(String userPass) {
         userPass = userPass;
     }
+
 
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
         private final ArrayList<Fragment> fragmentList = new ArrayList<>();

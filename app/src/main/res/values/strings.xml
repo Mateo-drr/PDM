@@ -26,4 +26,5 @@
     <string name="tst_error">Error</string>
     <string name="tst_diffpass" translatable="false">Passwords don\'t match</string>
     <string name="tst_usercreated">User Created!</string>
+    <string name="tst_log_ok" translatable="false">Login Successful</string>
 </resources>
