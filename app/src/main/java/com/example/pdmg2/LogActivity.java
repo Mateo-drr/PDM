@@ -3,15 +3,23 @@ package com.example.pdmg2;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -36,7 +44,7 @@ public class LogActivity extends AppCompatActivity {
     private String userEmail;
     private String userPass;
 
-    private ArrayList<User> arr_users = new ArrayList<>();
+    private FirebaseAuth mAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +55,16 @@ public class LogActivity extends AppCompatActivity {
         pagerAdapter.addFragmet(new LoginFragment());
         pagerAdapter.addFragmet(new RegisterFragment());
         viewPager.setAdapter(pagerAdapter);
+        mAuth = FirebaseAuth.getInstance();
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //updateUI(currentUser);
     }
 
     public void OnClickRegister(View view) {
@@ -62,26 +79,65 @@ public class LogActivity extends AppCompatActivity {
         userregpass = regpass.getText().toString();
         userregpass2 = regpass2.getText().toString();
 
-        if(userregpass.isEmpty() || userregpass2.isEmpty() || userregpass2.equals("-") || userregpass.equals("-")
-                || userregname.isEmpty() || userregname.equals("-") || userregemail.isEmpty() || userregemail.equals("-")) {
-            //AlertDialog ad = new AlertDialog.Builder(this).create();
-            //ad.setMessage(getString(R.string.tst_fillEverything));
-            //ad.setTitle(getString(R.string.tst_error));
-            //ad.setIcon(R.drawable.actionbar_exc);
-            //ad.setButton(Dialog.BUTTON_NEUTRAL, "OK", null,null);
-            //ad.show();
+        //if(userregpass.isEmpty() || userregpass2.isEmpty() || userregpass2.equals("-") || userregpass.equals("-")
+        //        || userregname.isEmpty() || userregname.equals("-") || userregemail.isEmpty() || userregemail.equals("-")) {
+        //AlertDialog ad = new AlertDialog.Builder(this).create();
+        //ad.setMessage(getString(R.string.tst_fillEverything));
+        //ad.setTitle(getString(R.string.tst_error));
+        //ad.setIcon(R.drawable.actionbar_exc);
+        //ad.setButton(Dialog.BUTTON_NEUTRAL, "OK", null,null);
+        //ad.show();
+        //    Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
+        //}else {
+        //    if(userregpass.equals(userregpass2)) {
 
-            Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
-        }else {
-            if(userregpass.equals(userregpass2)) {
-                User ureg = new User(userregemail, userregname, userregpass);
-                arr_users.add(ureg);
-                // TODO compare if email already exists
-                Toast.makeText(this, getString(R.string.tst_usercreated), Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, getString(R.string.tst_diffpass), Toast.LENGTH_SHORT).show();
-            }
+
+        if (userregemail.isEmpty()) {
+            regemail.setError("Please enter email id");
+            regemail.requestFocus();
+        } else if (userregpass.isEmpty()) {
+            regpass.setError("Please enter your password");
+            regpass.requestFocus();
+        } else if (userregpass.length() < 6) {
+            regpass.setError("The given password is invalid. Password should be at least 6 characters!");
+            regpass.requestFocus();
+        } else if (userregpass2.isEmpty()) {
+            regpass2.setError("Please confirm your password");
+            regpass2.requestFocus();
+        } else if (userregemail.isEmpty() && userregpass.isEmpty() && userregpass2.isEmpty()) {
+            Toast.makeText(this, "Fields Are Empty!", Toast.LENGTH_SHORT).show();
+        } else if (!userregpass.equals(userregpass2)) {
+            Toast.makeText(this, "Passwords dont match!", Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.createUserWithEmailAndPassword(userregemail, userregpass)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                //Log.d(TAG, "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                //updateUI(user);
+
+                                Toast.makeText(LogActivity.this, getString(R.string.tst_usercreated), Toast.LENGTH_SHORT).show();
+
+                                //Launch main activity and remove login activity
+                                Intent intent = new Intent(LogActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                //Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(LogActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
+                        }
+                    });
         }
+        //else{
+        //Toast.makeText(this, getString(R.string.tst_diffpass), Toast.LENGTH_SHORT).show();
     }
 
     public void onClickLogin(View view) {
@@ -92,7 +148,7 @@ public class LogActivity extends AppCompatActivity {
         userlogemail = logemail.getText().toString();
         userlogpass = logpass.getText().toString();
 
-        if(userlogemail.isEmpty() || userlogpass.isEmpty() || userlogemail.equals("-") || userlogpass.equals("-")) {
+        if (userlogemail.isEmpty() || userlogpass.isEmpty() || userlogemail.equals("-") || userlogpass.equals("-")) {
             //AlertDialog ad = new AlertDialog.Builder(this).create();
             //ad.setMessage(getString(R.string.tst_fillEverything));
             //ad.setTitle(getString(R.string.tst_error));
@@ -100,18 +156,33 @@ public class LogActivity extends AppCompatActivity {
             //ad.setButton(Dialog.BUTTON_NEUTRAL, "OK", null,null);
             //ad.show();
             Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
-        }else {
-            //TODO compare if user is registered
-            User ulog = new User(userlogemail, "", userlogpass);
-            //ulog.getEmail().compareTo();
-            //Launch main activity
-            Toast.makeText(this, getString(R.string.tst_log_ok), Toast.LENGTH_SHORT).show();
+        } else {
+            mAuth.signInWithEmailAndPassword(userlogemail, userlogpass)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                //Log.d(TAG, "signInWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                //updateUI(user);
+                                Toast.makeText(LogActivity.this, getString(R.string.tst_log_ok), Toast.LENGTH_SHORT).show();
 
-            //Launch main activity and remove login activity
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            finish();
+                                //Launch main activity and remove login activity
+                                Intent intent = new Intent(LogActivity.this, MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                //Log.w(TAG, "signInWithEmail:failure", task.getException());
+                                Toast.makeText(LogActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                                //updateUI(null);
+                            }
+                        }
+                    });
         }
 
     }
@@ -122,23 +193,6 @@ public class LogActivity extends AppCompatActivity {
 
     public void onClickRegFing(View view) {
     }
-
-    public String getUserlogemail() {
-        return userlogemail;
-    }
-
-    public void setUserlogemail(String userlogemail) {
-        userlogemail = userlogemail;
-    }
-
-    public String getUserPass() {
-        return userPass;
-    }
-
-    public void setUserPass(String userPass) {
-        userPass = userPass;
-    }
-
 
     class AuthenticationPagerAdapter extends FragmentPagerAdapter {
         private final ArrayList<Fragment> fragmentList = new ArrayList<>();

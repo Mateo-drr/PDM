@@ -1,13 +1,25 @@
 package com.example.pdmg2;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -22,9 +34,14 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    private SensorManager mSensorManager;
+    private Sensor mSensorTemperature;
+
+    private boolean switch_on = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +68,35 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mSensorTemperature != null) {
+            mSensorManager.registerListener(this, mSensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+        }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        TextView txtemp =findViewById(R.id.txt_showtemp);
+        int sensorType = event.sensor.getType();
+        if (sensorType ==Sensor.TYPE_AMBIENT_TEMPERATURE && switch_on){
+            txtemp.setText("T" + event.values[0]);
+            // Write a message to the database
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Temperature");
+
+            myRef.setValue("T" + event.values[0]);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     @Override
@@ -67,4 +113,30 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    public void onClicksw(View view) {
+        if (!switch_on)
+                switch_on = true;
+        else
+            switch_on = false;
+    }
+
+    public void onClickGallery(MenuItem item) {
+
+        AlertDialog ad = new AlertDialog.Builder(this).create();
+        ad.setMessage(getString(R.string.tst_fillEverything));
+        ad.setTitle(getString(R.string.tst_error));
+        //ad.setIcon(R.drawable.actionbar_exc);
+        ad.setButton(Dialog.BUTTON_POSITIVE, "OK", null,null);
+        ad.setButton(Dialog.BUTTON_NEGATIVE, "CANCEL", null,null);
+        ad.show();
+
+        Intent intent = new Intent(this, LogActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
+
+    public void onClickSlide(MenuItem item) {
+
+    }
 }

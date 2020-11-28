@@ -22,4 +22,5 @@
     <string name="btn_log_fingerprint">Entrar com Impressão Digital</string>
     <string name="tst_error">Erro</string>
     <string name="tst_usercreated">Usuario criado!</string>
+    <string name="sw_on">Ler dados</string>
 </resources>
