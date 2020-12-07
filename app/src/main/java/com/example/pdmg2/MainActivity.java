@@ -1,7 +1,10 @@
 package com.example.pdmg2;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -16,12 +19,13 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_logout, R.id.nav_settings)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -71,6 +75,41 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            //Uri photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            //boolean emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            //String uid = user.getUid();
+            TextView txtName =findViewById(R.id.txtV_usermail);
+            TextView txtEmail =findViewById(R.id.txtV_usermail);
+            txtName.setText(name);
+            txtEmail.setText(email);
+
+        }
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration);
+               // || super.onSupportNavigateUp();
     }
 
     @Override
@@ -99,20 +138,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
     public void onClicksw(View view) {
         if (!switch_on)
                 switch_on = true;
@@ -120,23 +145,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             switch_on = false;
     }
 
-    public void onClickGallery(MenuItem item) {
-
+    /*
+    Metodo onClick para opcao logout
+     */
+    public void onClickLogOut(MenuItem item) {
+        //Criar um alert dialog
         AlertDialog ad = new AlertDialog.Builder(this).create();
-        ad.setMessage(getString(R.string.tst_fillEverything));
-        ad.setTitle(getString(R.string.tst_error));
+        ad.setMessage(getString(R.string.alertDMessg_logout));
+        ad.setTitle(getString(R.string.alertD_logout));
         //ad.setIcon(R.drawable.actionbar_exc);
-        ad.setButton(Dialog.BUTTON_POSITIVE, "OK", null,null);
+        //onClick handler para a opcao OK, intent da logactivity
+        ad.setButton(Dialog.BUTTON_POSITIVE, "OK", null, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MainActivity.this, LogActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //Ao selecionar Cancel, nao faz nada
         ad.setButton(Dialog.BUTTON_NEGATIVE, "CANCEL", null,null);
         ad.show();
-
-        Intent intent = new Intent(this, LogActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        finish();
-    }
-
-    public void onClickSlide(MenuItem item) {
-
     }
 }

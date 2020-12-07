@@ -23,4 +23,5 @@
     <string name="tst_error">Erro</string>
     <string name="tst_usercreated">Usuario criado!</string>
     <string name="sw_on">Ler dados</string>
+    <string name="alertD_logout">Sair</string>
 </resources>

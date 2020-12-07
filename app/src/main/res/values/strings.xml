@@ -28,4 +28,6 @@
     <string name="tst_usercreated">User Created!</string>
     <string name="tst_log_ok" translatable="false">Login Successful</string>
     <string name="sw_on">Read data</string>
+    <string name="alertD_logout">Logout</string>
+    <string name="alertDMessg_logout" translatable="false">Are you shure you want to logout?</string>
 </resources>
