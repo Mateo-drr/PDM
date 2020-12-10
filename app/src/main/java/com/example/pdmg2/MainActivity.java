@@ -1,5 +1,6 @@
 package com.example.pdmg2;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -23,6 +24,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
@@ -36,15 +40,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
-
     private AppBarConfiguration mAppBarConfiguration;
 
     private SensorManager mSensorManager;
     private Sensor mSensorTemperature;
-
+    private Sensor mSensorLight;
     private boolean switch_on = false;
 
     @Override
@@ -74,7 +79,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
+    }
+
+    private DataPoint[] getDataPoint(float event) {
+        DataPoint[] dp= new DataPoint[]{
+                new DataPoint(new Date().getTime(), event)
+        };
+        return dp;
     }
 
     @Override
@@ -105,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         return true;
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -115,21 +129,30 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onStart() {
         super.onStart();
-        if (mSensorTemperature != null) {
-            mSensorManager.registerListener(this, mSensorTemperature, SensorManager.SENSOR_DELAY_NORMAL);
+        if (mSensorLight != null) {
+            mSensorManager.registerListener(this, mSensorLight, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        float[] array = new float[500];
+        int a=0;
         TextView txtemp =findViewById(R.id.txt_showtemp);
         int sensorType = event.sensor.getType();
-        if (sensorType ==Sensor.TYPE_AMBIENT_TEMPERATURE && switch_on){
-            txtemp.setText("T" + event.values[0]);
+        if (sensorType ==Sensor.TYPE_LIGHT && switch_on){
+            txtemp.setText("L" + event.values[0]);
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Temperature");
-
+            GraphView graphView = (GraphView) findViewById(R.id.graphid);
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+            array[a]=event.values[0];
+            a++;
+            for(int i=0; i< array.length; i++){
+                series.appendData(new DataPoint(i,array[i]), true, 500);
+            }
+            graphView.addSeries(series);
             myRef.setValue("T" + event.values[0]);
         }
     }
@@ -139,8 +162,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void onClicksw(View view) {
-        if (!switch_on)
-                switch_on = true;
+        if (!switch_on) {
+            switch_on = true;
+        }
         else
             switch_on = false;
     }
