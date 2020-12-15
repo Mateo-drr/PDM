@@ -30,4 +30,8 @@
     <string name="sw_on">Read data</string>
     <string name="alertD_logout">Logout</string>
     <string name="alertDMessg_logout" translatable="false">Are you shure you want to logout?</string>
+    <string name="Bluetooth" translatable="false">Bluetooth</string>
+    <string name="btnBLE" translatable="false">Start connection</string>
+    <string name="BLnotEn" translatable="false">Please enable bluetooth</string>
+    <string name="CLIENT_CHARACTERISTIC_CONFIG" translatable="false">00002902-0000-1000-8000-00805f9b34fb"</string>
 </resources>
