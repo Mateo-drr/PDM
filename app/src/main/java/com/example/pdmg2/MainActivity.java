@@ -1,8 +1,9 @@
 package com.example.pdmg2;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
@@ -36,8 +40,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -45,9 +50,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private SensorManager mSensorManager;
     private Sensor mSensorTemperature;
-
+    private Sensor mSensorLight;
     private boolean switch_on = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorTemperature = mSensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        mSensorLight = mSensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
             Toast.makeText(this, "BLE not supported", Toast.LENGTH_SHORT).show();
@@ -84,6 +89,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //((ScrollView) findViewById(R.id.scrollView)).addView(listView);
 
+    }
+
+    private DataPoint[] getDataPoint(float event) {
+        DataPoint[] dp= new DataPoint[]{
+                new DataPoint(new Date().getTime(), event)
+        };
+        return dp;
     }
 
     @Override
@@ -98,7 +110,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             String email = user.getEmail();
             txtEmail.setText(email);
         }
-        //findViewById(R.id.btn_scan).setOnClickListener(this);
 
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration);
-        // || super.onSupportNavigateUp();
+               // || super.onSupportNavigateUp();
     }
 
     @Override
@@ -129,7 +140,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Temperature");
-
+            GraphView graphView = (GraphView) findViewById(R.id.graphid);
+            LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>();
+            array[a]=event.values[0];
+            a++;
+            for(int i=0; i< array.length; i++){
+                series.appendData(new DataPoint(i,array[i]), true, 500);
+            }
+            graphView.addSeries(series);
             myRef.setValue("T" + event.values[0]);
         }
     }
