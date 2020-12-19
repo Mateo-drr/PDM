@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.ArrayList;
 
@@ -79,19 +80,6 @@ public class LogActivity extends AppCompatActivity {
         userregpass = regpass.getText().toString();
         userregpass2 = regpass2.getText().toString();
 
-        //if(userregpass.isEmpty() || userregpass2.isEmpty() || userregpass2.equals("-") || userregpass.equals("-")
-        //        || userregname.isEmpty() || userregname.equals("-") || userregemail.isEmpty() || userregemail.equals("-")) {
-        //AlertDialog ad = new AlertDialog.Builder(this).create();
-        //ad.setMessage(getString(R.string.tst_fillEverything));
-        //ad.setTitle(getString(R.string.tst_error));
-        //ad.setIcon(R.drawable.actionbar_exc);
-        //ad.setButton(Dialog.BUTTON_NEUTRAL, "OK", null,null);
-        //ad.show();
-        //    Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
-        //}else {
-        //    if(userregpass.equals(userregpass2)) {
-
-
         if (userregemail.isEmpty()) {
             regemail.setError("Please enter email id");
             regemail.requestFocus();
@@ -118,8 +106,22 @@ public class LogActivity extends AppCompatActivity {
                                 //Log.d(TAG, "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 //updateUI(user);
+                                FirebaseUser userZ = FirebaseAuth.getInstance().getCurrentUser();
 
-                                Toast.makeText(LogActivity.this, getString(R.string.tst_usercreated), Toast.LENGTH_SHORT).show();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(userregname)
+                                        .build();
+
+                                userZ.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    //Log.d(TAG, "User profile updated.");
+                                                    Toast.makeText(LogActivity.this, getString(R.string.tst_usercreated), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
 
                                 //Launch main activity and remove login activity
                                 Intent intent = new Intent(LogActivity.this, MainActivity.class);
