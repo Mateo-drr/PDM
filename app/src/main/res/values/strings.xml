@@ -33,4 +33,5 @@
     <string name="txt_temp">Temperature</string>
     <string name="txt_hum">Humidity</string>
     <string name="txt_light">Luminosity</string>
+    <string name="menu_control">Control</string>
 </resources>

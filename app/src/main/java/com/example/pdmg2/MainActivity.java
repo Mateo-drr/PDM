@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        @SuppressLint("WrongViewCast") FloatingActionButton fab = findViewById(R.id.switch1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

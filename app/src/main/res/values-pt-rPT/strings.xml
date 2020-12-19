@@ -29,5 +29,7 @@
     <string name="tst_log_ok" translatable="false">Login feito com sucesso!</string>
     <string name="alertDMessg_logout" translatable="false">Tem a certeza que quer sair?</string>
     <string name="txt_temp">Temperatura</string>
-    <string name="txt_hum">Luminosidade</string>
+    <string name="menu_control">Controlo</string>
+    <string name="txt_light">Luminosidade</string>
+    <string name="txt_hum">Humidade</string>
 </resources>
