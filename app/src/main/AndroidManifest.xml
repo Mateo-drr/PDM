@@ -9,19 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDMG2">
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.PDMG2.NoActionBar"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".LogActivity"
-            android:label="@string/app_name">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.PDMG2.NoActionBar" />
+        <activity
+            android:name=".LogActivity"
+            android:label="@string/app_name">
+        </activity>
     </application>
 
 </manifest>
-

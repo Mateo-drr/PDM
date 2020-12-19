@@ -22,12 +22,15 @@
     <string name="your_name">Full Name</string>
     <string name="btn_reg_fingerprint">Add Fingerprint</string>
     <string name="btn_log_fingerprint">LogIn with Fingerprint</string>
-    <string name="tst_fillEverything" translatable="false">Enter email and password!</string>
+    <string name="tst_fillEverything">Enter email and password!</string>
     <string name="tst_error">Error</string>
-    <string name="tst_diffpass" translatable="false">Passwords don\'t match</string>
+    <string name="tst_diffpass">Passwords don\'t match</string>
     <string name="tst_usercreated">User Created!</string>
-    <string name="tst_log_ok" translatable="false">Login Successful</string>
+    <string name="tst_log_ok">Login Successful</string>
     <string name="sw_on">Read data</string>
     <string name="alertD_logout">Logout</string>
-    <string name="alertDMessg_logout" translatable="false">Are you shure you want to logout?</string>
+    <string name="alertDMessg_logout">Are you shure you want to logout?</string>
+    <string name="txt_temp">Temperature</string>
+    <string name="txt_hum">Humidity</string>
+    <string name="txt_light">Luminosity</string>
 </resources>

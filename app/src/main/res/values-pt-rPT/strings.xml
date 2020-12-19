@@ -24,4 +24,10 @@
     <string name="tst_usercreated">Usuario criado!</string>
     <string name="sw_on">Ler dados</string>
     <string name="alertD_logout">Sair</string>
+    <string name="tst_diffpass" translatable="false">A password não é igual</string>
+    <string name="tst_fillEverything">Insira o Email e a Palavra Passe</string>
+    <string name="tst_log_ok" translatable="false">Login feito com sucesso!</string>
+    <string name="alertDMessg_logout" translatable="false">Tem a certeza que quer sair?</string>
+    <string name="txt_temp">Temperatura</string>
+    <string name="txt_hum">Luminosidade</string>
 </resources>

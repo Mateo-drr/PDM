@@ -43,16 +43,6 @@
         android:text="@string/login"
         tools:ignore="OnClick" />
 
-    <Button
-        android:id="@+id/btn_log_fingerprint"
-        style="@style/Theme.PDMG2.LogIn_Button"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_login"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="643dp"
-        android:onClick="onClickLogFing"
-        android:text="@string/btn_log_fingerprint" />
-
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"

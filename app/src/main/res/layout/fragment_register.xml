@@ -51,14 +51,6 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_reg_fingerprint"
-            style="@style/Theme.PDMG2.LogIn_Button"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:onClick="onClickRegFing"
-            android:text="@string/btn_reg_fingerprint" />
-
-        <Button
             android:id="@+id/btn_register"
             style="@style/Theme.PDMG2.LogIn_Button"
             android:layout_centerInParent="true"
