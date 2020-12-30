@@ -34,4 +34,8 @@
     <string name="txt_hum">Humidity</string>
     <string name="txt_light">Luminosity</string>
     <string name="btn_bleconnect" translatable="false">Connect to device</string>
+    <string name="btn_bleread">Read</string>
+    <string name="btn_blewrite">Write</string>
+    <string name="waiting_data" translatable="false">Waiting for data</string>
+    <string name="read_command" translatable="false">Enter read command</string>
 </resources>

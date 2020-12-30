@@ -9,12 +9,16 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -39,7 +43,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
     private AppBarConfiguration mAppBarConfiguration;
     private SensorManager mSensorManager;
@@ -52,6 +56,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private ArrayList<Float> array3 = new ArrayList<>();
     private int index=0;
     private Date now = new Date();
+    Handler handler = new Handler();
+    //Handler handler2 = new Handler();
+    private String blehum;
+    private String bletemp;
+    private Runnable runnableCode;
+    //private Runnable runnableCode2;
+    private int counter = 1;
+
+
+    BLE ble = new BLE(MainActivity.this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +113,70 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     public void onClicksw(View view) {
-        if (!switch_on)
+        if (!switch_on) {
             switch_on = true;
-        else
+            //check if connected
+            if (ble.getDevice() != null){
+
+                ble.Write("h");
+                // Define the code block to be executed
+                runnableCode = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something here on the main thread
+                        if(counter == 1){
+                            ble.Read();
+                            counter = 2;
+                        }else if(counter == 2){
+                            blehum = ble.getS();
+                            bleUpdateHumGraph();
+                            ble.Write("t");
+                            counter = 3;
+                        }else if(counter == 3){
+                            ble.Read();
+                            counter = 4;
+                        }else if(counter == 4){
+                            bletemp = ble.getS();
+                            bleUpdateTempGraph();
+                            ble.Write("h");
+                            counter = 1;
+                        }
+
+                        Log.d("Handlers", "Called on main thread");
+                        // Repeat this the same runnable code block again another 2 seconds
+                        // 'this' is referencing the Runnable object
+                        handler.postDelayed(this, 5000);
+                    }
+                };
+                // Start the initial runnable task by posting through the handler
+                handler.post(runnableCode);
+
+                /*
+                ble.Write("t");
+                // Define the code block to be executed
+                runnableCode2 = new Runnable() {
+                    @Override
+                    public void run() {
+                        // Do something here on the main thread
+                        ble.Read();
+                        bletemp = ble.getS();
+                        bleUpdateTempGraph();
+                        Log.d("Handlers", "Called on main thread");
+                        // Repeat this the same runnable code block again another 2 seconds
+                        // 'this' is referencing the Runnable object
+                        handler2.postDelayed(this, 5000);
+                    }
+                };
+                // Start the initial runnable task by posting through the handler
+                handler2.post(runnableCode2);
+                 */
+
+            }
+        }else {
             switch_on = false;
+            handler.removeCallbacks(runnableCode);
+            //handler2.removeCallbacks(runnableCode2);
+        }
     }
 
     @Override
@@ -111,11 +185,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 
         GraphView graphView = (GraphView) findViewById(R.id.graphid);
-        GraphView graphView2 = (GraphView) findViewById(R.id.graphid2);
-        GraphView graphView3 = (GraphView) findViewById(R.id.graphid3);
+        //GraphView graphView2 = (GraphView) findViewById(R.id.graphid2);
+        //GraphView graphView3 = (GraphView) findViewById(R.id.graphid3);
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
-        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
-        LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
+        //LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
+        //LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
 
         int sensorType = event.sensor.getType();
 
@@ -152,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             });
         }
-
+/*
         if (sensorType ==Sensor.TYPE_AMBIENT_TEMPERATURE && switch_on){
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -186,14 +260,17 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             });
         }
-        if (sensorType ==Sensor.TYPE_RELATIVE_HUMIDITY && switch_on){
+
+ */
+/*
+        if (sensorType == Sensor.TYPE_RELATIVE_HUMIDITY && switch_on){
             // Write a message to the database
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Humidade");
             myRef.setValue("H" + event.values[0]);
+            //myRef.setValue()
 
             array3.add(event.values[0]);
-
             graphView3.addSeries(series3);
             //series.setTitle("Luminosidade");
             //graphView.getLegendRenderer().setVisible(true);
@@ -219,6 +296,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 }
             });
         }
+
+ */
     }
 
     @Override
@@ -237,7 +316,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             // authenticate with your backend server, if you have one. Use
             // FirebaseUser.getIdToken() instead.
             //String uid = user.getUid();
-            TextView txtName =findViewById(R.id.txtV_usermail);
+            TextView txtName =findViewById(R.id.txtV_username);
             TextView txtEmail =findViewById(R.id.txtV_usermail);
             txtName.setText(name);
             txtEmail.setText(email);
@@ -248,7 +327,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -285,10 +363,101 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         ad.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void onClickScan(View view) {
-
+        ble.Scan();
     }
 
+    public void onClickRead(View view) {
+        //TextView rd = findViewById(R.id.txt_write);
+        //if (!rd.getText().toString().isEmpty()) {
+            ble.Read();
+        //}
+    }
+
+    public void onClickWrite(View view) {
+        ble.Write(null); // autosend -> t ou h para temperatura ou humidade
+    }
+
+    private void bleUpdateHumGraph(){
+        GraphView graphView3 = (GraphView) findViewById(R.id.graphid3);
+        LineGraphSeries<DataPoint> series3 = new LineGraphSeries<>();
+        Calendar calendar = Calendar.getInstance().getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        if(blehum != null && !blehum.equals("busy")) {
+            // Write a message to the database
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Humidade");
+            myRef.setValue("H" + Float.parseFloat(blehum));
+            //myRef.setValue()
+
+            array3.add(Float.parseFloat(blehum));
+            graphView3.addSeries(series3);
+            //series.setTitle("Luminosidade");
+            //graphView.getLegendRenderer().setVisible(true);
+            //graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
+            if (array3.size() > 79) {
+                array3.remove(0);
+                graphView3.removeSeries(series3);
+            }
+
+            for (int i = 0; i < array3.size(); i++) {
+                series3.appendData(new DataPoint(i, array3.get(i)), true, 80);
+            }
+
+            series3.setColor(Color.BLUE);
+            graphView3.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if (isValueX) {
+                        return format.format(calendar.getTime());
+                    }
+                    return super.formatLabel(value, isValueX);
+                }
+            });
+        }
+    }
+
+    private void bleUpdateTempGraph(){
+        GraphView graphView2 = (GraphView) findViewById(R.id.graphid2);
+        LineGraphSeries<DataPoint> series2 = new LineGraphSeries<>();
+        Calendar calendar = Calendar.getInstance().getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        if(bletemp != null && !bletemp.equals("busy")) {
+            // Write a message to the database
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("Temperature");
+            myRef.setValue("T" + Float.parseFloat(bletemp));
+
+            array2.add(Float.parseFloat(bletemp));
+
+            graphView2.addSeries(series2);
+            //series.setTitle("Luminosidade");
+            //graphView.getLegendRenderer().setVisible(true);
+            //graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.BOTTOM);
+
+            if (array2.size() > 79) {
+                array2.remove(0);
+                graphView2.removeSeries(series2);
+            }
+
+            for(int i=0; i< array2.size(); i++){
+                series2.appendData(new DataPoint(i, array2.get(i)), true, 80);
+            }
+
+            series2.setColor(Color.RED);
+            graphView2.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter(){
+                @Override
+                public String formatLabel(double value, boolean isValueX) {
+                    if(isValueX){
+                        return format.format(calendar.getTime());
+                    }
+                    return super.formatLabel(value, isValueX);
+                }
+            });
+        }
+    }
         /*
     public void start (SensorEvent event){
         Timer t = new Timer();
