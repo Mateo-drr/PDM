@@ -19,6 +19,8 @@
     <string name="re_type_password">Rescrever Palavra Passe</string>
     <string name="your_name">Nome Inteiro</string>
     <string name="tag">Junta-te a nós!</string>
+    <string name="btn_reg_fingerprint">Adicionar Impressão Digital</string>
+    <string name="btn_log_fingerprint">Entrar com Impressão Digital</string>
     <string name="tst_error">Erro</string>
     <string name="tst_usercreated">Usuario criado!</string>
     <string name="sw_on">Ler dados</string>
@@ -39,4 +41,7 @@
     <string name="btn_set_settings">Aceitar Alterações</string>
     <string name="btn_addphotogal">Foto da Galeria</string>
     <string name="btn_takephoto">Tirar Foto</string>
+    <string name="txt_hum">Luminosidade</string>
+    <string name="btn_bleread">Ler</string>
+    <string name="btn_blewrite">Escrever</string>
 </resources>

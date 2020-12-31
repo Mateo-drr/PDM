@@ -41,4 +41,9 @@
     <string name="btn_set_settings">Accept Changes</string>
     <string name="btn_addphotogal">Photo from Gallery</string>
     <string name="btn_takephoto">Take Photo</string>
+    <string name="btn_bleconnect" translatable="false">Connect to device</string>
+    <string name="btn_bleread">Read</string>
+    <string name="btn_blewrite">Write</string>
+    <string name="waiting_data" translatable="false">Waiting for data</string>
+    <string name="read_command" translatable="false">Enter read command</string>
 </resources>
