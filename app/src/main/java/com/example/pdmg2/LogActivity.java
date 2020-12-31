@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,6 @@ public class LogActivity extends AppCompatActivity {
     private String userName;
     private String userEmail;
     private String userPass;
-
     private FirebaseAuth mAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,46 +98,35 @@ public class LogActivity extends AppCompatActivity {
             Toast.makeText(this, "Passwords dont match!", Toast.LENGTH_SHORT).show();
         } else {
             mAuth.createUserWithEmailAndPassword(userregemail, userregpass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                //Log.d(TAG, "createUserWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                //updateUI(user);
-                                FirebaseUser userZ = FirebaseAuth.getInstance().getCurrentUser();
+                                User user = new User(userregname,userregemail);
 
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(userregname)
-                                        .build();
-
-                                userZ.updateProfile(profileUpdates)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    //Log.d(TAG, "User profile updated.");
-                                                    Toast.makeText(LogActivity.this, getString(R.string.tst_usercreated), Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-
-                                //Launch main activity and remove login activity
-                                Intent intent = new Intent(LogActivity.this, MainActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                                finish();
-
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(LogActivity.this, getString(R.string.tst_RegisterSuc), Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            Toast.makeText(LogActivity.this, getString(R.string.tst_RegisterFail), Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             } else {
                                 // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                                Toast.makeText(LogActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
+                                Toast.makeText(LogActivity.this, getString(R.string.tst_RegisterFail), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
+        Intent intent = new Intent(LogActivity.this, LogActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
         //else{
         //Toast.makeText(this, getString(R.string.tst_diffpass), Toast.LENGTH_SHORT).show();
     }
@@ -147,8 +136,8 @@ public class LogActivity extends AppCompatActivity {
         logemail = findViewById(R.id.txtlogemail);
         logpass = findViewById(R.id.txtlogpass);
         //read login data
-        userlogemail = logemail.getText().toString();
-        userlogpass = logpass.getText().toString();
+        userlogemail = logemail.getText().toString().trim();
+        userlogpass = logpass.getText().toString().trim();
 
         if (userlogemail.isEmpty() || userlogpass.isEmpty() || userlogemail.equals("-") || userlogpass.equals("-")) {
             //AlertDialog ad = new AlertDialog.Builder(this).create();
@@ -160,14 +149,10 @@ public class LogActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.tst_fillEverything), Toast.LENGTH_SHORT).show();
         } else {
             mAuth.signInWithEmailAndPassword(userlogemail, userlogpass)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                //Log.d(TAG, "signInWithEmail:success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                //updateUI(user);
                                 Toast.makeText(LogActivity.this, getString(R.string.tst_log_ok), Toast.LENGTH_SHORT).show();
 
                                 //Launch main activity and remove login activity
@@ -175,13 +160,9 @@ public class LogActivity extends AppCompatActivity {
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                                 finish();
-
                             } else {
                                 // If sign in fails, display a message to the user.
-                                //Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LogActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                //updateUI(null);
+                                Toast.makeText(LogActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

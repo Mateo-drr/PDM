@@ -11,6 +11,7 @@
     <string name="menu_logout">Sair</string>
     <string name="swipe_left_for_register">Desliza à direia para registar</string>
     <string name="login">Entrar</string>
+    <string name="txtSelectPhoto">Escolha uma imagem</string>
     <string name="password" translatable="false">Palavra Passe</string>
     <string name="e_mail">Email</string>
     <string name="swipe_right_for_login">Desliza à direita se já tiver conta</string>
@@ -18,12 +19,12 @@
     <string name="re_type_password">Rescrever Palavra Passe</string>
     <string name="your_name">Nome Inteiro</string>
     <string name="tag">Junta-te a nós!</string>
-    <string name="btn_reg_fingerprint">Adicionar Impressão Digital</string>
-    <string name="btn_log_fingerprint">Entrar com Impressão Digital</string>
     <string name="tst_error">Erro</string>
     <string name="tst_usercreated">Usuario criado!</string>
     <string name="sw_on">Ler dados</string>
     <string name="alertD_logout">Sair</string>
+    <string name="tst_RegisterSuc">Registo de utilizador feito com sucesso!</string>
+    <string name="tst_RegisterFail">Falha ao Registar! Tente de novo.</string>
     <string name="tst_diffpass" translatable="false">A password não é igual</string>
     <string name="tst_fillEverything">Insira o Email e a Palavra Passe</string>
     <string name="tst_log_ok" translatable="false">Login feito com sucesso!</string>
@@ -32,4 +33,10 @@
     <string name="menu_control">Controlo</string>
     <string name="txt_light">Luminosidade</string>
     <string name="txt_hum">Humidade</string>
+    <string name="btn_changeUserSettings">Alterar Definições do Usuário</string>
+    <string name="btn_bleconnect">Ligar a um Dispositivo</string>
+    <string name="txt_edit_name">Insira o nome</string>
+    <string name="btn_set_settings">Aceitar Alterações</string>
+    <string name="btn_addphotogal">Foto da Galeria</string>
+    <string name="btn_takephoto">Tirar Foto</string>
 </resources>

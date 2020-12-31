@@ -20,18 +20,25 @@
     <string name="register">Register</string>
     <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
-    <string name="btn_reg_fingerprint">Add Fingerprint</string>
-    <string name="btn_log_fingerprint">LogIn with Fingerprint</string>
+    <string name="tst_RegisterSuc">User has been registered successfully!</string>
+    <string name="tst_RegisterFail">Failed to register! Try again.</string>
     <string name="tst_fillEverything">Enter email and password!</string>
     <string name="tst_error">Error</string>
     <string name="tst_diffpass">Passwords don\'t match</string>
     <string name="tst_usercreated">User Created!</string>
     <string name="tst_log_ok">Login Successful</string>
     <string name="sw_on">Read data</string>
+    <string name="txtSelectPhoto">Select Photo</string>
     <string name="alertD_logout">Logout</string>
     <string name="alertDMessg_logout">Are you shure you want to logout?</string>
     <string name="txt_temp">Temperature</string>
     <string name="txt_hum">Humidity</string>
     <string name="txt_light">Luminosity</string>
-    <string name="btn_bleconnect" translatable="false">Connect to device</string>
+    <string name="btn_bleconnect">Connect to device</string>
+    <string name="btn_changeUserSettings">Change User Settings</string>
+    <string name="menu_control">Control</string>
+    <string name="txt_edit_name">Insert new name</string>
+    <string name="btn_set_settings">Accept Changes</string>
+    <string name="btn_addphotogal">Photo from Gallery</string>
+    <string name="btn_takephoto">Take Photo</string>
 </resources>
