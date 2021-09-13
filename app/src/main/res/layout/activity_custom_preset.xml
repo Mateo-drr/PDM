@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presets.CustomPresetActivity" >
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        app:srcCompat="@drawable/ic_temp_foreground"
+        android:contentDescription="TODO"
+        tools:ignore="VectorDrawableCompat" />
+
+    <EditText
+        android:id="@+id/txt_cp_temp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:text="@string/Temp"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:backgroundTint="#3F51B5"
+        app:icon="@drawable/ic_ledon_foreground" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtv_cp_maxtemp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Max"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#878CAC" />
+
+        <EditText
+            android:id="@+id/txtv_cp_mintemp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Min"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#878CAC" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3D9140"
+        app:srcCompat="@drawable/ic_hum_foreground" />
+
+    <EditText
+        android:id="@+id/txt_cp_hum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:text="@string/Hum"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:backgroundTint="#3D9140" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtv_cp_maxhum"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Max"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#7BA37C" />
+
+        <EditText
+            android:id="@+id/txtv_cp_minhum"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Min"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#7BA37C" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A86503"
+        app:srcCompat="@drawable/ic_lum_foreground" />
+
+    <EditText
+        android:id="@+id/txt_cp_lum"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#000000"
+        android:clickable="false"
+        android:editable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="textPersonName"
+        android:text="@string/Lum"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        app:backgroundTint="#A86503" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/txtv_cp_maxlum"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Max"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#B1884D" />
+
+        <EditText
+            android:id="@+id/txtv_cp_minlum"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="#000000"
+            android:ems="10"
+            android:hint="@string/Min"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            app:backgroundTint="#B1884D" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_cp_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_set_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onClickCPSave"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
