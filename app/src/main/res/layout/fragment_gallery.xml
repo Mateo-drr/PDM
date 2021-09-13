@@ -13,13 +13,15 @@
 
         <Button
             android:id="@+id/btn_bleconnect"
-            android:layout_width="wrap_content"
+            android:layout_width="375dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
             android:layout_marginEnd="208dp"
             android:onClick="onClickScan"
-            android:text="@string/btn_bleconnect" />
+            android:text="@string/btn_bleconnect"
+            app:backgroundTint="#304FFE"
+            app:icon="@drawable/ic_ble_foreground" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,13 +32,14 @@
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:visibility="invisible" />
 
             <TextView
-                android:id="@+id/textView5"
-                android:layout_width="133dp"
-                android:layout_height="44dp"
+                android:id="@+id/txtv_connect"
+                android:layout_width="182dp"
+                android:layout_height="match_parent"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -44,76 +47,110 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
-        <Button
-            android:id="@+id/buttonusersettings"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_changeUserSettings"
-            android:onClick="onClickEditUser"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/buttonusersettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onClickEditUser"
+                android:text="@string/btn_changeUserSettings"
+                app:icon="@drawable/ic_menu_manage" />
+
             <EditText
                 android:id="@+id/editTextTextPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:background="#000000"
                 android:ems="10"
                 android:hint="@string/txt_edit_name"
                 android:inputType="textPersonName"
-                android:visibility="gone"/>
+                android:paddingLeft="10dp"
+                android:visibility="gone"
+                app:backgroundTint="#3F51B5" />
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+
+                >
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#A8B1E1"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imgview_user"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_weight="1"
-                    tools:src="@tools:sample/avatars"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.06"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.043"
+                    tools:src="@drawable/ic_empty_profpic_foreground" />
 
-                <LinearLayout
+                <Button
+                    android:id="@+id/btn_photogal"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickPhotoGallery"
+                    android:text="@string/btn_addphotogal"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_menu_gallery"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.909"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.034" />
+
+                <Button
+                    android:id="@+id/btn_takephoto"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:onClick="onClickPhotoCamera"
+                    android:text="@string/btn_takephoto"
+                    android:visibility="gone"
+                    app:icon="@drawable/ic_menu_camera"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.909"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_photogal"
+                    app:layout_constraintVertical_bias="0.053" />
+
+                <Button
+                    android:id="@+id/btnedit"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="100dp"
+                    android:onClick="onClickAcceptChanges"
+                    android:text="@string/btn_set_settings"
+                    android:translationX="50dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Button
-                        android:id="@+id/btn_photogal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/btn_addphotogal"
-                        android:onClick="buttonOnClickPhotoGallery"
-                        android:visibility="gone"/>
-
-                    <Button
-                        android:id="@+id/btn_takephoto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/btn_takephoto"
-                        android:onClick="buttonOnClickPhotoCamera"
-                        android:visibility="gone"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnedit"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:onClick="onClickAcceptChanges"
-                android:text="@string/btn_set_settings"
-                android:translationX="50dp"
-                android:visibility="gone"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PDMG2</string>
     <string name="navigation_drawer_open">Abrir janela de navegação</string>
     <string name="navigation_drawer_close">Fechar janela de navegação</string>
     <string name="nav_header_title">Nome</string>
     <string name="nav_header_subtitle">mail</string>
     <string name="nav_header_desc">Cabeçalho de navegação</string>
-    <string name="menu_activity">Atividade</string>
     <string name="menu_settings">Definições</string>
     <string name="menu_logout">Sair</string>
     <string name="swipe_left_for_register">Desliza à direia para registar</string>
     <string name="login">Entrar</string>
     <string name="txtSelectPhoto">Escolha uma imagem</string>
-    <string name="password" translatable="false">Palavra Passe</string>
+    <string name="password" >Palavra Passe</string>
     <string name="e_mail">Email</string>
     <string name="swipe_right_for_login">Desliza à direita se já tiver conta</string>
     <string name="register">Registar</string>
@@ -25,10 +23,10 @@
     <string name="alertD_logout">Sair</string>
     <string name="tst_RegisterSuc">Registo de utilizador feito com sucesso!</string>
     <string name="tst_RegisterFail">Falha ao Registar! Tente de novo.</string>
-    <string name="tst_diffpass" translatable="false">A password não é igual</string>
+    <string name="tst_diffpass" >A password não é igual</string>
     <string name="tst_fillEverything">Insira o Email e a Palavra Passe</string>
-    <string name="tst_log_ok" translatable="false">Login feito com sucesso!</string>
-    <string name="alertDMessg_logout" translatable="false">Tem a certeza que quer sair?</string>
+    <string name="tst_log_ok" >Login feito com sucesso!</string>
+    <string name="alertDMessg_logout" >Tem a certeza que quer sair?</string>
     <string name="txt_temp">Temperatura</string>
     <string name="menu_control">Controlo</string>
     <string name="txt_light">Luminosidade</string>
@@ -37,6 +35,47 @@
     <string name="btn_bleconnect">Ligar a um Dispositivo</string>
     <string name="txt_edit_name">Insira o nome</string>
     <string name="btn_set_settings">Aceitar Alterações</string>
-    <string name="btn_addphotogal">Foto da Galeria</string>
+    <string name="btn_addphotogal">Galeria</string>
     <string name="btn_takephoto">Tirar Foto</string>
+    <string name="btn_bleread">Ler Temperatura</string>
+    <string name="btn_read_hum">Ler Humidade</string>
+    <string name="btn_read_lum">Ler Luminosidade</string>
+    <string name="carrot">Cenoura</string>
+    <string name="pot">Batata</string>
+    <string name="Lett">Alface</string>
+    <string name="Pep">Pimento</string>
+    <string name="Rad">Rabanete</string>
+    <string name="Broc">Brocolo</string>
+    <string name="Beet">Beterraba</string>
+    <string name="Champ">Champignon</string>
+    <string name="Tom">Tomate</string>
+    <string name="Temp">Temperatura</string>
+    <string name="Hum">Humidade</string>
+    <string name="Lum">Luminosidade</string>
+    <string name="Custm_p">Predefinição Personalizada</string>
+    <string name="Custm_p_q">Criar uma Predefinição Personalizada?</string>
+    <string name="menu_analytics">Análise de Dados</string>
+    <string name="MaxMin_err" >Os valores mínimos não podem ser maiores que os valores máximos!</string>
+    <string name="Fill_all" >Preencha todos os valores!</string>
+    <string name="connecting" >Conectando ...</string>
+    <string name="connected" >Conectado!</string>
+    <string name="devnotfound" >Dispositivo não encontrado!</string>
+    <string name="reg_email" >Por favor introduza o seu e-mail</string>
+    <string name="reg_pass" >Por favor, insira sua senha</string>
+    <string name="reg_pass_inv" >A senha fornecida é inválida. A senha deve ter pelo menos 6 caracteres!</string>
+    <string name="reg_conf_pass" >Por favor confirme sua senha</string>
+    <string name="aut_fail" >A autenticação falhou</string>
+    <string name="presets" >Alterar predefinição</string>
+    <string name="read_command" >Digite o comando de leitura</string>
+    <string name="waiting_data">Esperando por dados</string>
+    <string name="tst_UploadFireError">Error a fazer upload para a Firebase!</string>
+    <string name="tst_NoDevices">Não está ligado a nenhum dispositivo!</string>
+    <string name="tst_CameraPermission">É necessário dar permissão de camera para a utilizar!</string>
+    <string name="tst_NoImage">Não foi selecionado nenhuma imagem!</string>
+    <string name="info_ad">Projeto de PDM\nRealizado por:\nGonçalo Lopes 2181775\nMateo Rodríguez 2182076</string>
+    <string name="menu_activity">Actividade</string>
+    <string name="manual">Controlo Manual</string>
+    <string name="wind">Janela</string>
+    <string name="sprink">Rega</string>
+    <string name="Heat">Aquecimento</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.pdmg2;
+package com.example.pdmg2.login;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,10 +9,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.pdmg2.R;
 
-public class RegisterFragment extends Fragment {
+/**
+ * Classe RegisterFragment
+ *
+ * Classe que abre o fragemento "fragment_login".
+ */
+public class LoginFragment extends Fragment {
 
 
-    public RegisterFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -21,7 +26,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register, container, false);
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 
 }

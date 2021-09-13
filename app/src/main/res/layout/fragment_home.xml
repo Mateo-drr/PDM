@@ -5,64 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
         <Switch
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClicksw"
             android:text="@string/sw_on" />
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/txt_temp" />
-
                 <com.jjoe64.graphview.GraphView
                     android:id="@+id/graphid2"
                     android:layout_width="match_parent"
                     android:layout_height="200dp" />
-
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_hum" />
-
+                    android:text="@string/txt_light" />
                 <com.jjoe64.graphview.GraphView
                     android:id="@+id/graphid"
                     android:layout_width="match_parent"
                     android:layout_height="200dp" />
-
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/txt_light" />
-
+                    android:text="@string/txt_hum" />
                 <com.jjoe64.graphview.GraphView
                     android:id="@+id/graphid3"
                     android:layout_width="match_parent"
                     android:layout_height="200dp" />
-
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
-
 </RelativeLayout>

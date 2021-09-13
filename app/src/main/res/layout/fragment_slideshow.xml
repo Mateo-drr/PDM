@@ -6,70 +6,233 @@
     android:layout_height="match_parent"
     tools:context=".ui.slideshow.SlideshowFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <Button
+        android:id="@+id/btn_write"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickLed"
+        android:text="@string/btn_blewrite"
+        app:backgroundTint="#BA1414"
+        app:icon="@drawable/ic_ledon_foreground"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btn_read_temp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickReadTemp"
+        android:text="@string/btn_bleread"
+        app:backgroundTint="#3F51B5"
+        app:icon="@drawable/ic_temp_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_write"
+        app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button" />
+    <Button
+        android:id="@+id/btn_read_hum"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickReadHum"
+        android:text="@string/btn_read_hum"
+        app:backgroundTint="#3D9140"
+        app:icon="@drawable/ic_hum_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_temp"
+        app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout>
+    <Button
+        android:id="@+id/btn_read_lum"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickReadLum"
+        android:text="@string/btn_read_lum"
+        app:backgroundTint="#A86503"
+        app:icon="@drawable/ic_lum_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_hum"
+        app:layout_constraintVertical_bias="0.0" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btn_servo_on"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickServoOn"
+        android:text="@string/wind"
+        app:backgroundTint="#878CAC"
+        app:icon="@drawable/ic_temp_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_hum"
+        app:layout_constraintVertical_bias="0.291" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button" />
+    <Button
+        android:id="@+id/btn_resist_on"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickResistOn"
+        android:text="@string/Heat"
+        app:backgroundTint="#B1884D"
+        app:icon="@drawable/ic_resist_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_hum"
+        app:layout_constraintVertical_bias="0.64" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
+    <TextView
+        android:id="@+id/txt_led_state3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_weight="1"
+        android:text="OFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_resist_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toEndOf="@+id/btn_rega_on"
+        app:layout_constraintTop_toTopOf="@+id/btn_rega_on" />
 
-        </LinearLayout>
+    <TextView
+        android:id="@+id/txt_led_state4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
+        android:layout_weight="1"
+        android:text="OFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_resist_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toEndOf="@+id/btn_resist_on"
+        app:layout_constraintTop_toTopOf="@+id/btn_resist_on"
+        app:layout_constraintVertical_bias="0.456" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <Button
+        android:id="@+id/btn_rega_on"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:onClick="onClickRegaOn"
+        android:text="@string/sprink"
+        app:backgroundTint="#7BA37C"
+        app:icon="@drawable/ic_hum_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.142"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_hum"
+        app:layout_constraintVertical_bias="0.466" />
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Button" />
+    <Switch
+        android:id="@+id/switch2"
+        android:layout_width="250dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginEnd="300dp"
+        android:onClick="onClickManual"
+        android:text="@string/manual"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/btn_servo_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_lum" />
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="TextView" />
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txt_led_state2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="52dp"
+        android:layout_weight="1"
+        android:text="OFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_rega_on"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toEndOf="@+id/btn_servo_on"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_lum"
+        app:layout_constraintVertical_bias="0.755" />
+
+    <TextView
+        android:id="@+id/txt_led_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="OFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_write"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_write"
+        app:layout_constraintTop_toTopOf="@+id/btn_write" />
+
+    <TextView
+        android:id="@+id/txt_read_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_read_temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_read_temp"
+        app:layout_constraintTop_toTopOf="@+id/btn_read_temp" />
+
+    <TextView
+        android:id="@+id/txt_read_hum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_read_hum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_read_lum"
+        app:layout_constraintTop_toBottomOf="@+id/btn_read_temp" />
+
+    <TextView
+        android:id="@+id/txt_read_lum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_read_lum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_read_lum"
+        app:layout_constraintTop_toTopOf="@+id/btn_read_lum" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
